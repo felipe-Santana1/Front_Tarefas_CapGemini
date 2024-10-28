@@ -1,12 +1,10 @@
-<br>
 <div class="container text-center">
   <div class="row">
-    <!--FORMULARIO DE CADASTRO/UPDATE -->
+    <!-- Formulário de Cadastro/Update -->
     <div class="col col-md-6">
       <br>
       <form [formGroup]="tarefaForm" (ngSubmit)="adicionarTarefa(tarefaForm.value)">
-
-        <!-- SELECIONAR O RESPONSAVEL -->
+        <!-- Selecionar o Responsável -->
         <label for="exampleFormControlSelect1">Selecione o responsável</label>
         <select class="form-control" formControlName="usuarioID" (change)="teste($event)">
           <option *ngFor="let usuario of usuarios" [value]="usuario.id">
@@ -14,14 +12,14 @@
           </option>
         </select>
         <br>
-        <!-- NOME DA TAREFA -->
+        <!-- Nome da Tarefa -->
         <div class="form-group">
           <label for="exampleInputEmail1">Nome da Tarefa</label>
           <input type="name" class="form-control" placeholder="Nome" formControlName="nome">
         </div>
         <br>
         <br>
-        <!-- STATUS DA TAREFA -->
+        <!-- Status da Tarefa -->
         <label for="exampleFormControlSelect1">Status da Tarefa</label>
         <select class="form-control" placeholder="Selecione..." formControlName="status">
           <option value="1">A Fazer</option>
@@ -30,15 +28,14 @@
         </select>
         <br>
         <br>
-        <!-- DESCRICAO DA TAREFA -->
+        <!-- Descrição da Tarefa -->
         <div class="form-group">
-          <label for="exampleInputEmail1"></label>
           <label for="exampleFormControlTextarea1">Descricao</label>
           <textarea class="form-control" rows="3" formControlName="descricao"
             placeholder="Adicione uma descrição"></textarea>
         </div>
         <br>
-        <!-- BOTAO ENVIAR  -->
+        <!-- Botão Enviar -->
         <div style="text-align: center;">
           <button type="submit" class="btn btn-danger">Enviar</button>
         </div>
@@ -46,7 +43,7 @@
     </div>
     <!-- / FORMULARIO DE CADASTRO/UPDATE -->
 
-    <!-- TABLE DE EXEIBIÇÃO REGISTROS -->
+    <!-- Tabela de Exibição de Registros -->
     <div class="col col-md-6">
       <table class="table">
         <thead class="thead-dark">
