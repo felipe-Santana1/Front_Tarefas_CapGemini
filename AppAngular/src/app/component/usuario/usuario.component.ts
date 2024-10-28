@@ -29,11 +29,15 @@ export class UsuarioComponent implements OnInit {
   }
 
   adicionarUsuario(usuario: Usuario) {
-    console.log(this.usuarioForm.value);
-
-    this.service.postUsuario(this.usuarioForm.value).subscribe((resp: Usuario) => {
-      this.listarUsuarios();
-    })
+    if (usuario.id !== undefined && usuario.id > 0) {
+      this.service.updateUsuario(usuario.id, this.usuarioForm.value).subscribe((resp: Usuario) => {
+        this.listarUsuarios();
+      })
+    } else {
+      this.service.postUsuario(this.usuarioForm.value).subscribe((resp: Usuario) => {
+        this.listarUsuarios();
+      })
+    }   
   }
 
   listarUsuarios(){
@@ -44,8 +48,14 @@ export class UsuarioComponent implements OnInit {
     )
   }
 
-  editarUsuario(id: number){
+  editarUsuario(usuario: Usuario){
     
+    this.usuarioForm.patchValue({
+      id: usuario.id,
+      nome: usuario.nome,
+      email: usuario.email
+    });
+
   }
 
   excluirUsuario(id: number) {

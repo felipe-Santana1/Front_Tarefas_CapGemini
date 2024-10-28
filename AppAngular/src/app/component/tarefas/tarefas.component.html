@@ -1,47 +1,91 @@
+<br>
+<div class="container text-center">
+  <div class="row">
+    <!--FORMULARIO DE CADASTRO/UPDATE -->
+    <div class="col col-md-6">
+      <br>
+      <form [formGroup]="tarefaForm" (ngSubmit)="adicionarTarefa(tarefaForm.value)">
 
-<h3>Tarefas Cadastradas</h3>
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Descrição</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-      </tr>
-    </tbody>
-</table>
-<br><br>
+        <!-- SELECIONAR O RESPONSAVEL -->
+        <!-- <label for="exampleFormControlSelect1">Selecione o responsavel</label>
+        <select class="form-control">
+          <option>Gustavo</option>
+          <option>Felipe</option>
+        </select> -->
+        <label for="exampleFormControlSelect1">Selecione o responsável</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let usuario of usuarios" [value]="usuario.nome">
+            {{ usuario.nome }}
+          </option>
+        </select>
+        <br>
+        <!-- NOME DA TAREFA -->
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nome da Tarefa</label>
+          <input type="name" class="form-control" placeholder="Nome" formControlName="nome">
+        </div>
+        <br>
+        <br>
+        <!-- STATUS DA TAREFA -->
+        <label for="exampleFormControlSelect1">Status da Tarefa</label>
+        <select class="form-control" placeholder="Selecione..." formControlName="status">
+          <option value="1">A Fazer</option>
+          <option value="2">Em Execução</option>
+          <option value="3">Feito</option>
+        </select>
+        <br>
+        <br>
+        <!-- DESCRICAO DA TAREFA -->
+        <div class="form-group">
+          <label for="exampleInputEmail1"></label>
+          <label for="exampleFormControlTextarea1">Descricao</label>
+          <textarea class="form-control" rows="3" formControlName="descricao"
+            placeholder="Adicione uma descrição"></textarea>
+        </div>
+        <br>
+        <!-- BOTAO ENVIAR  -->
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-danger">Enviar</button>
+        </div>
+      </form>
+    </div>
+    <!-- / FORMULARIO DE CADASTRO/UPDATE -->
 
-<form>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Nome</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1">
+    <!-- TABLE DE EXEIBIÇÃO REGISTROS -->
+    <div class="col col-md-6">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Descricao</th>
+            <th scope="col">Status</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Excluir</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tarefa; let i = index;">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.nome}}</td>
+            <td>{{item.descricao}}</td>
+            <td>{{item.descricao}}</td>
+            <td>
+              <a class="btn btn-warning btn-sm" title="Editar"
+                (click)="item.id !== undefined ? editarTarefa(item) : null">
+                <i class="fas fa-pencil-alt">editar</i>
+              </a>
+            </td>
+            <td>
+              <a class="btn btn-danger btn-sm" title="Excluir"
+                (click)="item.id !== undefined ? excluirTarefa(item.id) : null">
+                <i class="fas fa-trash-alt"></i> excluir
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Selecione Status</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>A Fazer</option>
-        <option>Em Execução</option>
-        <option>Realizado</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Descreva a Tarefa:</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <br>
-    <div style="text-align: center;">
-        <button type="submit" class="btn btn-danger">Enviar</button>
-    </div> 
-  </form>
+    <!-- / TABLE DE EXEIBIÇÃO REGISTROS -->
+  </div>
+</div>

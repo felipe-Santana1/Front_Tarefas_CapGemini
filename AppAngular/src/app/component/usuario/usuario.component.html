@@ -1,13 +1,9 @@
 
-<br>
-<br>
 <div class="container text-center">
   <div class="row">
     <div class="col col-md-6">
       <br>
-      <br>
-      <br>
-      <br>
+
       <form [formGroup]="usuarioForm" (ngSubmit)="adicionarUsuario(usuarioForm.value)">
         <div class="form-group">
           <label for="exampleInputEmail1">Nome</label>
@@ -41,7 +37,7 @@
               <td>{{item.nome}}</td>
               <td>{{item.email}}</td>
               <td>
-                <a href="#" class="btn btn-warning btn-sm" title="Editar" (click)="item.id !== undefined ? editarUsuario(item.id) : null">
+                <a class="btn btn-warning btn-sm" title="Editar" (click)="item.id !== undefined ? editarUsuario(item) : null">
                   <i class="fas fa-pencil-alt">editar</i>
               </a>
               </td>
