@@ -7,14 +7,9 @@
       <form [formGroup]="tarefaForm" (ngSubmit)="adicionarTarefa(tarefaForm.value)">
 
         <!-- SELECIONAR O RESPONSAVEL -->
-        <!-- <label for="exampleFormControlSelect1">Selecione o responsavel</label>
-        <select class="form-control">
-          <option>Gustavo</option>
-          <option>Felipe</option>
-        </select> -->
         <label for="exampleFormControlSelect1">Selecione o responsável</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option *ngFor="let usuario of usuarios" [value]="usuario.nome">
+        <select class="form-control" formControlName="usuarioID" (change)="teste($event)">
+          <option *ngFor="let usuario of usuarios" [value]="usuario.id">
             {{ usuario.nome }}
           </option>
         </select>
@@ -69,7 +64,7 @@
             <th scope="row">{{item.id}}</th>
             <td>{{item.nome}}</td>
             <td>{{item.descricao}}</td>
-            <td>{{item.descricao}}</td>
+            <td>{{item.status}}</td>
             <td>
               <a class="btn btn-warning btn-sm" title="Editar"
                 (click)="item.id !== undefined ? editarTarefa(item) : null">

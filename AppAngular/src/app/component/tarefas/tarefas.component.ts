@@ -38,6 +38,11 @@ export class TarefasComponent implements OnInit {
     });
   }
 
+teste(event: any) {
+  const id = this.tarefaForm.get('usuarioID')?.value;
+  console.log('[OBJ]:', this.tarefaForm.value)
+}
+
   listarUsuarios(){
     this.serviceUsuario.getAllUSuario().subscribe(
       result => {
@@ -64,6 +69,7 @@ export class TarefasComponent implements OnInit {
     this.service.getAllTarefa().subscribe(
       result => {
         this.tarefa = result;
+        console.log(result)
       }
     )
   }
@@ -74,7 +80,8 @@ export class TarefasComponent implements OnInit {
       id: tarefa.id,
       nome: tarefa.nome,
       descricao: tarefa.descricao,
-      status: tarefa.status
+      status: tarefa.status,
+      usuarioID: tarefa.usuarioID
     });
 
   }

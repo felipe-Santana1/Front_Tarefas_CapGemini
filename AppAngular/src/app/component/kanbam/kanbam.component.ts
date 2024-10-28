@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Tarefa } from '../tarefas/model/tarefa';
 
 @Component({
   selector: 'app-kanbam',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class KanbamComponent {
 
+  tarefas: Tarefa[] = [];
 }
