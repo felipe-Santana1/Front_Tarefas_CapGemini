@@ -12,10 +12,10 @@
     <tbody *ngIf="tarefas !== undefined && tarefas.length > 0">
       <tr *ngFor="let item of tarefas; let i = index;">
         <th scope="row">{{item.id}}</th>
-        <td>{{item.email}}</td>
-        <td>{{item.tarefa}}</td>
+        <td>{{item.usuario?.nome}}</td>
+        <td>{{item.usuario?.email}}</td>
+        <td>{{item.nome}}</td>
         <td>{{item.descricao}}</td>
-        <td>{{item.status}}</td>
         <td>
           <span *ngIf="item.status == 1">A fazer</span>
           <span *ngIf="item.status == 2">Em execução</span>
