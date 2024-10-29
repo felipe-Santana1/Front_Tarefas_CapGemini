@@ -56,11 +56,15 @@ teste(event: any) {
     console.log(this.tarefaForm.value)
     if (tarefa.id !== undefined && tarefa.id > 0) {
       this.service.updateTarefa(tarefa.id, this.tarefaForm.value).subscribe((resp: Tarefa) => {
+        window.alert("Tarefa atualizada com sucesso.");
         this.listarTarefas();
+        this.atualizarPagina();
       })
     } else {
       this.service.postTarefa(this.tarefaForm.value).subscribe((resp: Tarefa) => {
         this.listarTarefas();
+        window.alert("Tarefa adicionada com sucesso.")
+        this.atualizarPagina();
       })
     }   
   }
@@ -75,7 +79,6 @@ teste(event: any) {
   }
 
   editarTarefa(tarefa: Tarefa){
-    
     this.tarefaForm.patchValue({
       id: tarefa.id,
       nome: tarefa.nome,
@@ -90,7 +93,12 @@ teste(event: any) {
     id = id;
     console.log('Excluir usuário com ID:', id);
     this.service.deleteTarefa(id).subscribe((id) => {
-    this.listarTarefas();
+      window.alert("Tarefa excluida com sucesso.");
+      this.listarTarefas();
     })
+  }
+
+  atualizarPagina(){
+    window.location.reload();
   }
 }

@@ -31,10 +31,14 @@ export class UsuarioComponent implements OnInit {
   adicionarUsuario(usuario: Usuario) {
     if (usuario.id !== undefined && usuario.id > 0) {
       this.service.updateUsuario(usuario.id, this.usuarioForm.value).subscribe((resp: Usuario) => {
+        window.alert("Usuário Atualizado.");
+        this.atualizarPagina();
         this.listarUsuarios();
       })
     } else {
       this.service.postUsuario(this.usuarioForm.value).subscribe((resp: Usuario) => {
+        window.alert("Usuário cadastrado com sucesso.")
+        this.atualizarPagina();
         this.listarUsuarios();
       })
     }   
@@ -49,11 +53,11 @@ export class UsuarioComponent implements OnInit {
   }
 
   editarUsuario(usuario: Usuario){
-    
     this.usuarioForm.patchValue({
       id: usuario.id,
       nome: usuario.nome,
-      email: usuario.email
+      email: usuario.email,
+      window
     });
 
   }
@@ -62,7 +66,12 @@ export class UsuarioComponent implements OnInit {
     id = id;
     console.log('Excluir usuário com ID:', id);
     this.service.deleteUsuario(id).subscribe((id) => {
+    window.alert("Usuário excluido com sucesso.")
     this.listarUsuarios();
     })
+  }
+
+  atualizarPagina(){
+    window.location.reload();
   }
 }
