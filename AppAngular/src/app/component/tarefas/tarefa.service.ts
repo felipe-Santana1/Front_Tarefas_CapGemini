@@ -10,6 +10,7 @@ import { Usuario } from "../usuario/model/usuario";
 })
 export class TarefaService {
 
+    
     private apiUrl = 'https://localhost:7104/api/Tarefa'; 
 
     constructor(
